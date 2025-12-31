@@ -34,8 +34,16 @@ audienceButtons.forEach((btn) => {
 const finalButton = document.querySelector("#send-btn");
 
 finalButton.addEventListener("click", () => {
-  //Need to add email middleware here
+  //email middleware
+  const emailInput = document.querySelector("#mail").value;
+  console.log(emailInput);
+  if (!emailInput) {
+    alert("Error!");
+  } else {
+    // console.log(emailInput);
 
-  console.log("Done!");
-  alert("send?");
+    alert(emailInput);
+  }
+
+  // console.log("Done!");
 });
