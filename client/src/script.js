@@ -60,5 +60,11 @@ finalButton.addEventListener("click", () => {
     createdAt: new Date().toISOString(),
   };
 
-  // console.log("Done!");
+  fetch("http://localhost:2645/letters", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
 });
