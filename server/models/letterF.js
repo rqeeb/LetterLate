@@ -1,31 +1,35 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//Letter Schema MongoDb
 const letterSchema = new Schema({
   email: {
     type: String,
-    require: true,
+    required: true,
   },
   letter: {
     type: String,
-    require: true,
-  },
-  delivery: {
-    type: String,
-    require: true,
+    required: true,
   },
   audience: {
     type: String,
-    require: true,
+    required: true,
   },
-  createdAt: {
+
+  deliverAt: {
+    type: Date,
+    required: true,
+  },
+  status: {
     type: String,
-    require: true,
+    enum: ["scheduled", "delivered"],
+    default: "scheduled",
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
-
-// letter => will search for plural in Db 
-const Letter = mongoose.model("letter", letterSchema);
+const Letter = mongoose.model("Letter", letterSchema);
 module.exports = Letter;
