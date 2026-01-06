@@ -1,5 +1,5 @@
 const Letter = require("../models/letterF");
-const sendlettermail = require("./mailer.js");
+const sendLetterEmail = require("./mailer");
 
 function startScheduler() {
   console.log("Scheduler started");
@@ -15,7 +15,9 @@ function startScheduler() {
 
       for (const letter of dueLetters) {
         try {
+          console.log("sending");
           await sendLetterEmail(letter.email, letter.letter);
+          console.log("sent!");
           letter.status = "delivered";
           await letter.save();
         } catch (err) {
@@ -29,4 +31,3 @@ function startScheduler() {
 }
 
 module.exports = startScheduler;
-//
