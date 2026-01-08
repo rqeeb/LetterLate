@@ -32,39 +32,3 @@ audienceButtons.forEach((btn) => {
   });
 });
 
-//Final Button
-const finalButton = document.querySelector("#send-btn");
-
-finalButton.addEventListener("click", () => {
-  //email middleware
-  const emailInput = document.querySelector("#mail").value;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(emailInput)) {
-    alert("Invalid email format");
-    return;
-  }
-
-  //Letter Text middle ware
-  const letterText = document.querySelector("textarea").value;
-  if (!letterText.trim()) {
-    alert("Please Enter your email!");
-    return;
-  }
-
-  const payload = {
-    email: emailInput,
-    letter: letterText,
-    delivery: selectedDelieveryButton,
-    audience: selectedAudienceButton,
-    createdAt: new Date().toISOString(),
-  };
-
-  fetch("http://localhost:2745/letters", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-});
